@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h2>Welcome to the GC Coffee Shop!</h2>
+    <h4>New here? @Html.ActionLink("Click this to register!", "Register", "Home")</h4>
+</div>
+
+<form action="/Home/SearchItemsByName" method="get">
+    <input type="text" name="SearchKey" />
+    <input type="submit" value="Search items" />
+</form>
+
+<table class="table">
+    <tr>
+        <th>Item Name</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Picture</th>
+    </tr>
+    @if (ViewBag.ItemInfo != null)
+    { foreach (var item in ViewBag.ItemInfo)
+        {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            <td>@item.Quantity</td>
+            <td>$@item.Price</td>
+            <td><img src=@item.ImagePath /></td>
+        </tr>
+        }
+    }
+</table>
+
+<style>
+    img{
+        height: 20%;
+        width: 20%;
+        display:flex;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Here's some filler text!</h2>
+        <p>
+            Did I mention we have comfy chairs? The way I see it, every life is a pile of good things and bad things.…hey.…
+            the good things don't always soften the bad things; but vice-versa the bad things don't necessarily 
+            spoil the good things and make them unimportant.
+        </p>
+        <p><a class="btn btn-default" href="http://fillerama.io/">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>What's this? More text?!</h2>
+        <p>You don't frighten us, English pig-dogs! Go and boil your bottoms, sons of a silly person! I blow my nose at you, so-called Ah-thoor Keeng, you and all your silly English K-n-n-n-n-n-n-n-niggits!</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Does it ever end?!</h2>
+        <p>
+            Bad news. Andy Griffith turned us down. He didn't like his trailer. Really? Did nothing cancel? There's so many poorly chosen words in that sentence. Get me a vodka rocks. And a piece of toast. No! I was ashamed to be SEEN with you. I like being with you.
+        </p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </div>
+</div>
