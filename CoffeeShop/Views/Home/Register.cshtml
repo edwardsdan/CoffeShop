@@ -1,15 +1,20 @@
 ﻿<br /><br />
 <h3>Please fill in the form to register!</h3>
-<h5>@ViewBag.InputError</h5>
+<h5>@ViewBag.FirstNameError</h5>
+<h5>@ViewBag.LastNameError</h5>
+<h5>@ViewBag.EmailError</h5>
+<h5>@ViewBag.PhoneError</h5>
+<h5>@ViewBag.UsernameError</h5>
+<h5>@ViewBag.PasswordError</h5>
 <br /><br />
 
 <form action="/Home/AddUser" id="regFOrm" onsubmit="return validate()" method="get">
-    <input type="text" id="regFirstName" placeholder="First Name" name="FirstName"/>
-    <input type="text" id="regLastName" placeholder="Last Name" name="LastName"/>
-    <input type="text" id="regEmail" placeholder="sample@email.com" name="Email"/>
-    <input type="text" id="regPhoneNo" placeholder="111-111-1111" name="PhoneNo"/>
-    <input type="text" id="regUsername" placeholder="Username" name="Username"/>
-    <input type="password" id="regPassword" placeholder="Password" name="Password"/>
+    <input type="text" id="regFirstName" placeholder="First Name" name="FirstName"/><br /><br />
+    <input type="text" id="regLastName" placeholder="Last Name" name="LastName"/><br /><br />
+    <input type="text" id="regEmail" placeholder="sample@email.com" name="Email"/><br /><br />
+    <input type="text" id="regPhoneNo" placeholder="111-111-1111" name="PhoneNo"/><br /><br />
+    <input type="text" id="regUsername" placeholder="Username" name="Username"/><br /><br />
+    <input type="password" id="regPassword" placeholder="Password" name="Password"/><br /><br />
     <input type="submit" value="Register" />
 </form>
 
@@ -30,7 +35,7 @@
         regexArray[2] = /^(([^<>()\[\]\\.,;:\s@@"]+(\.[^<>()\[\]\\.,;:\s@@"]+)*)|(".+"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         regexArray[3] = /^\d{10}$/;
         regexArray[4] = /^([a-zA-Z0-9]){1,15}$/;
-        regexArray[5] = /^[a-zA-Z0-9\+\!\.\,\/\\\(\)\[\]\#\$\%\^\&\*\(\)\_\<\>\?\|\"\'\;\:\{\}]{7,}$/;
+        regexArray[5] = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@@$!%*?&])[A-Za-z\d$@@$!%*?&]{8,}/;
     }
 
     function Check1() {
@@ -58,6 +63,8 @@
     function Check2() {
         if (element == false) {
             return false;
+        } else {
+            return true;
         }
     }
 </script>

@@ -45,33 +45,33 @@ namespace CoffeeShop.Controllers
         {
             CoffeeShopDBEntities ORM = new CoffeeShopDBEntities();
             bool validation = true;
-            if(!Regex.IsMatch(newUser.FirstName, "^[a-zA-Z]{1,}$"))
+            if(newUser.FirstName == null || !Regex.IsMatch(newUser.FirstName, "^[a-zA-Z]{1,}$"))
             {
-                ViewBag.InputError = "invalid input (letters only)";
+                ViewBag.FirstNameError = "Invalid first name (letters only)";
                 validation = false;
             }
-            if(!Regex.IsMatch(newUser.LastName, "^[a - zA - Z]{ 1,}$"))
+            if(newUser.LastName == null || !Regex.IsMatch(newUser.LastName, "^[a-zA-Z]{1,}$"))
             {
-                ViewBag.InputError = "invalid input (letters only)";
+                ViewBag.LastNameError = "Invalid last name (letters only)";
             }
-            if (!Regex.IsMatch(newUser.Email, @"^(([^<> ()\[\]\\.,;:\s\@\""]+(\.[^<>()\[\]\\.,;:\s@\""]+)*)| (\""\.\+\""))\@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a - zA - Z\-0 - 9]+\.)+[a-zA-Z]{2,}))$"))
+            if (newUser.Email == null || !Regex.IsMatch(newUser.Email, @"^(([^<>()\[\]\\.,;:\s\@\""]+(\.[^<>()\[\]\\.,;:\s@\""]+)*)| (\""\.\+\""))\@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$"))
             {
-                ViewBag.InputError = "Invalid input (try: email@domain.com)";
+                ViewBag.EmailError = "Invalid email (try: email@domain.com)";
                 validation = false;
             }
-            if(!Regex.IsMatch(newUser.PhoneNo, @"^\d{10}$"))
+            if(newUser.PhoneNo == null || !Regex.IsMatch(newUser.PhoneNo, @"^\d{10}$"))
             {
-                ViewBag.InputError = "Invlid input (numbers only)";
+                ViewBag.PhoneError = "Invalid phone number (numbers only)";
                 validation = false;
             }
-            if(!Regex.IsMatch(newUser.Username, "^([a-zA-Z0-9]){1,15}$"))
+            if(newUser.Username == null || !Regex.IsMatch(newUser.Username, "^([a-zA-Z0-9]){1,15}$"))
             {
-                ViewBag.InputError = "That username is not valid";
+                ViewBag.UsernameError = "Invalid username";
                 validation = false;
             }
-            if (!Regex.IsMatch(newUser.Password, @"^ (?=.*[a - z])(?=.*[A - Z])(?=.*\d)(?=.*[$@$!% *? &])[A - Za - z\d$@$!% *? &]{ 8,}"))
+            if (newUser.Password == null || !Regex.IsMatch(newUser.Password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}"))
             {
-                ViewBag.InputError = "Password isn't strong enough";
+                ViewBag.PasswordError = "Password isn't strong enough";
                 validation = false;
             }
 
@@ -82,7 +82,13 @@ namespace CoffeeShop.Controllers
                 ORM.Users.Add(newUser);
                 ORM.SaveChanges();
                 ViewBag.RegisterNewUser = $"Hello, {newUser.FirstName}!";
-                ViewBag.InputError = "";
+                ViewBag.FirstNameError = "";
+                ViewBag.LastNameError = "";
+                ViewBag.EmailError = "";
+                ViewBag.PhoneError = "";
+                ViewBag.UsernameError = "";
+                ViewBag.PasswordError = "";
+
                 return View();
             }
         }
