@@ -45,31 +45,31 @@ namespace CoffeeShop.Controllers
         {
             CoffeeShopDBEntities ORM = new CoffeeShopDBEntities();
             bool validation = true;
-            if(newUser.FirstName == null || !Regex.IsMatch(newUser.FirstName, "^[a-zA-Z]{1,}$"))
+            if(newUser.FirstName == null)
             {
                 ViewBag.FirstNameError = "Invalid first name (letters only)";
                 validation = false;
             }
-            if(newUser.LastName == null || !Regex.IsMatch(newUser.LastName, "^[a-zA-Z]{1,}$"))
+            if(newUser.LastName == null)
             {
                 ViewBag.LastNameError = "Invalid last name (letters only)";
             }
-            if (newUser.Email == null || !Regex.IsMatch(newUser.Email, @"^(([^<>()\[\]\\.,;:\s\@\""]+(\.[^<>()\[\]\\.,;:\s@\""]+)*)| (\""\.\+\""))\@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$"))
+            if (newUser.Email == null)
             {
                 ViewBag.EmailError = "Invalid email (try: email@domain.com)";
                 validation = false;
             }
-            if(newUser.PhoneNo == null || !Regex.IsMatch(newUser.PhoneNo, @"^\d{10}$"))
+            if(newUser.PhoneNo == null)
             {
                 ViewBag.PhoneError = "Invalid phone number (numbers only)";
                 validation = false;
             }
-            if(newUser.Username == null || !Regex.IsMatch(newUser.Username, "^([a-zA-Z0-9]){1,15}$"))
+            if(newUser.Username == null)
             {
                 ViewBag.UsernameError = "Invalid username";
                 validation = false;
             }
-            if (newUser.Password == null || !Regex.IsMatch(newUser.Password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}"))
+            if (newUser.Password == null)
             {
                 ViewBag.PasswordError = "Password isn't strong enough";
                 validation = false;
@@ -91,6 +91,19 @@ namespace CoffeeShop.Controllers
 
                 return View();
             }
+        }
+
+        public ActionResult Admin()
+        {
+            CoffeeShopDBEntities ORM = new CoffeeShopDBEntities();
+            ViewBag.ItemList = ORM.Items.ToList();
+            return View();
+        }
+
+        public ActionResult AddItem()
+        {
+
+            return View();
         }
     }
 }

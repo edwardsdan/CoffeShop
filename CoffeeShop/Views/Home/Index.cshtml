@@ -7,10 +7,13 @@
     <h4>New here? @Html.ActionLink("Click this to register!", "Register", "Home")</h4>
 </div>
 
+<h5>@Html.ActionLink("Admin Access", "Admin", "Home")</h5>
+
 <form action="/Home/SearchItemsByName" method="get">
     <input type="text" name="SearchKey" />
     <input type="submit" value="Search items" />
 </form>
+
 
 <table class="table">
     <tr>
@@ -21,24 +24,34 @@
         <th>Picture</th>
     </tr>
     @if (ViewBag.ItemInfo != null)
-    { foreach (var item in ViewBag.ItemInfo)
+    {
+        foreach (var item in ViewBag.ItemInfo)
         {
-        <tr>
-            <td>@item.Name</td>
-            <td>@item.Description</td>
-            <td>@item.Quantity</td>
-            <td>$@item.Price</td>
-            <td><img src=@item.ImagePath /></td>
-        </tr>
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.Quantity</td>
+                <td>$@item.Price</td>
+                <td><img src=@item.ImagePath /></td>
+            </tr>
         }
     }
 </table>
 
+@* add CSS file *@
 <style>
-    img{
-        height: 20%;
+    img {
+        height: 50%;
+        width: 50%;
+        display: flex;
+    }
+
+    td {
         width: 20%;
-        display:flex;
+    }
+
+    th {
+        width: 20%;
     }
 </style>
 
@@ -47,7 +60,7 @@
         <h2>Here's some filler text!</h2>
         <p>
             Did I mention we have comfy chairs? The way I see it, every life is a pile of good things and bad things.…hey.…
-            the good things don't always soften the bad things; but vice-versa the bad things don't necessarily 
+            the good things don't always soften the bad things; but vice-versa the bad things don't necessarily
             spoil the good things and make them unimportant.
         </p>
         <p><a class="btn btn-default" href="http://fillerama.io/">Learn more &raquo;</a></p>

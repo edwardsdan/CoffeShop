@@ -11,12 +11,20 @@ namespace CoffeeShop.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Item
     {
+        [Required]
+        [RegularExpression("^[a-zA-Z]{1,20}$")]
         public string Name { get; set; }
+        [Required]
+        [RegularExpression(".{1,2000}")]
         public string Description { get; set; }
+        [Required]
+
         public Nullable<int> Quantity { get; set; }
+        [Required]
         public Nullable<double> Price { get; set; }
         public string ImagePath { get; set; }
     }

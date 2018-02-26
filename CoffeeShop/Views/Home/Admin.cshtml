@@ -1,0 +1,23 @@
+﻿@using CoffeeShop.Models;
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Price</th>
+    </tr>
+    @foreach (Item x in ViewBag.ItemList)
+    {
+        <tr>
+            <td>@x.Name</td>
+            <td>@x.Description</td>
+            <td>@x.Quantity</td>
+            <td>@x.Price</td>
+            <td>@Html.ActionLink("Edit", "EditItem", "Home")</td>
+            <td>@Html.ActionLink("Delete", "DeleteItem", "Home")</td>
+        </tr>
+    }
+
+</table>
+<br /><br />
+<h4>@Html.ActionLink("Add new item", "AddItem", "Home")</h4>
