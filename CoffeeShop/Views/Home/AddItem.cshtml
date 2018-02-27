@@ -1,0 +1,16 @@
+﻿<br /><br />
+
+<form action="/Home/SaveNewItem" method="post">
+    <input type="text" placeholder="Item name" name="Name" /><br />
+    <input type="text" placeholder="Description" name="Description" /><br />
+    <input type="number" placeholder="Quantity" name="Quantity" /><br />
+    <input type="number" step="any" placeholder="Price" name="Price" /><br />
+    <input type="hidden" name="ImagePath" />
+    <input type="submit" value="Add this item" />
+</form>
+
+<style>
+    input {
+        display: flex;
+    }
+</style>

@@ -102,8 +102,51 @@ namespace CoffeeShop.Controllers
 
         public ActionResult AddItem()
         {
-
             return View();
+        }
+
+        public ActionResult SaveNewItem(Item newItem)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("../Shared/Error");
+            }
+            CoffeeShopDBEntities ORM = new CoffeeShopDBEntities();
+            ORM.Items.Add(newItem);
+            ORM.SaveChanges();
+            return RedirectToAction("Admin");
+        }
+
+        public ActionResult EditItem(string Name)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("../Shared/Error");
+            }
+            CoffeeShopDBEntities ORM = new CoffeeShopDBEntities();
+            Item ToEdit = ORM.Items.Find(Name);
+            ViewBag.ItemToEdit = ToEdit;
+            return View();
+        }
+
+        public ActionResult SaveEdit(Item newItem)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("../Shared/Error");
+            }
+            CoffeeShopDBEntities ORM = new CoffeeShopDBEntities();
+            ORM.Entry(ORM.Items.Find(newItem.Name)).CurrentValues.SetValues(newItem);
+            ORM.SaveChanges();
+            return RedirectToAction("Admin");
+        }
+
+        public ActionResult DeleteItem(string Name)
+        {
+            CoffeeShopDBEntities ORM = new CoffeeShopDBEntities();
+            ORM.Items.Remove(ORM.Items.Find(Name));
+            ORM.SaveChanges();
+            return RedirectToAction("Admin");
         }
     }
 }
