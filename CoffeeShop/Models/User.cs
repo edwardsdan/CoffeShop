@@ -11,14 +11,27 @@ namespace CoffeeShop.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class User
     {
+        [Required]
+        [RegularExpression("^[a-zA-Z]{1,}$")]
         public string FirstName { get; set; }
+        [Required]
+        [RegularExpression("^[a-zA-Z]{1,}$")]
         public string LastName { get; set; }
+        [Required]
+        [RegularExpression(@"^(([^<>()\[\]\\.,;:\s\@]+(\.[^<>()\[\]\\.,;:\s\@]+)*)|('.+'))\@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$")]
         public string Email { get; set; }
+        [Required]
+        [RegularExpression("^\\d{10}$")]
         public string PhoneNo { get; set; }
+        [Required]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@@$!%*?&])[A-Za-z\d$@@$!%*?&]{8,}")]
         public string Password { get; set; }
+        [Required]
+        [RegularExpression("^([a-zA-Z0-9]){1,15}$")]
         public string Username { get; set; }
     }
 }
